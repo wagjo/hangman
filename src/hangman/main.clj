@@ -10,6 +10,23 @@
 ;;
 ;; You must not remove this notice, or any other, from this software.
 
-(ns hangman.core
-  "Core Hangman functions")
+(ns hangman.main
+  "Entry point for Hangman."
+  (:gen-class))
 
+(defn- start-server
+  []
+  (println "Hangman in server mode."))
+
+(defn- start-desktop
+  []
+  (println "Hangman in desktop mode."))
+
+(defn -main
+  [& args]
+  (condp = (first args)
+    "server" (start-server)
+    "desktop" (start-desktop)
+    (println "Welcome to Hangman! Valid arguments are:
+server - start hangman in web server mode.
+desktop - start hangman as a desktop app.")))
