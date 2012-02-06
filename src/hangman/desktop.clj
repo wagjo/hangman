@@ -16,78 +16,10 @@
             [seesaw.core :as ss]
             [clojure.string :as cs]))
 
-(declare on-new-game on-next-guess)
+;;;; We use Seesaw library for desktop GUI
 
-;; Form
-
-(def form
-  (ss/frame
-   :title "Hangman in Clojure"
-   :content
-   (ss/grid-panel
-    :border 15 :vgap 10 :columns 1
-    :items [(ss/label :id :game-state
-                      :text "N/A"
-                      :font "ARIAL-16")
-            (ss/label :id :word
-                      :text "N/A"
-                      :font "ARIAL-BOLD-26"
-                      :halign :center)
-            (ss/label :id :wrong
-                      :text "N/A"
-                      :font "ARIAL-18"
-                      :halign :center)
-            (ss/horizontal-panel
-             :items [(ss/label :text "Type next guess:"
-                               :font "ARIAL-16")
-                     [:fill-h 20]
-                     (ss/text :id :guess
-                              :listen [:key-released on-next-guess]
-                              :font "ARIAL-BOLD-16"
-                              :size [30 :by 30])])
-            (ss/button :id :new-game
-                       :text "New Game"
-                       :listen [:action on-new-game]
-                       :font "ARIAL-16")
-            (ss/label :text "https://github.com/wagjo/hangman"
-                      :font "ARIAL-16"
-                      :halign :right)])))
-
-;; update game state
-
-(defn update-state!
-  []
-  (let [guess-widget (ss/select form [:#guess])
-        word-widget (ss/select form [:#word])
-        new-game-widget (ss/select form [:#new-game])
-        game-state-widget (ss/select form [:#game-state])
-        wrong-widget (ss/select form [:#wrong])
-        info (hangman/get-game-info)]
-    (ss/config! word-widget :text (cs/upper-case (:hint info)))
-    (ss/value! wrong-widget
-               (str
-                (if (empty? (:wrong-guesses info))
-                  "no wrong guesses"
-                  (cs/join ", " (->> info
-                                     :wrong-guesses
-                                     reverse
-                                     (map cs/upper-case)
-                                     sort)))
-                (when-not (= :lost (:state info))
-                  (str " (" (:wrong-guesses-left info) " left)"))))
-    (condp = (:state info)
-      :won (do
-             (ss/config! game-state-widget :text "You have won!")
-             (ss/config! guess-widget :enabled? false)
-             (.requestFocus (ss/to-widget new-game-widget)))
-      :lost (do
-              (ss/config! game-state-widget :text "You have lost!")
-              (ss/config! guess-widget :enabled? false)
-              (.requestFocus (ss/to-widget new-game-widget)))
-      (do
-        (ss/config! game-state-widget :text "Make your guess.")
-        (ss/config! guess-widget :enabled? true)
-        (.requestFocus (ss/to-widget guess-widget))))))
+;; forward declarations
+(declare form update-state!)
 
 ;; event handlers
 
@@ -110,6 +42,92 @@
     (ss/value! guess-widget ""))
   (update-state!))
 
+;; update game state
+
+(defn update-state!
+  "Updates game UI, to reflect a current state."
+  []
+  ;; find widgets and collect information about current game
+  (let [guess-widget (ss/select form [:#guess])
+        new-game-widget (ss/select form [:#new-game])
+        game-state-widget (ss/select form [:#game-state])
+        info (hangman/get-game-info)]
+    ;; print word to guess
+    (ss/config! (ss/select form [:#word])
+                :text (cs/upper-case (:hint info)))
+    ;; print wrong guesses, in uppercase, sorted
+    (ss/value! (ss/select form [:#wrong])
+               (str
+                (if (empty? (:wrong-guesses info))
+                  "no wrong guesses"
+                  (cs/join ", " (->> info
+                                     :wrong-guesses
+                                     reverse
+                                     (map cs/upper-case)
+                                     sort)))
+                ;; also print number of wrong guesses left
+                (when-not (= :lost (:state info))
+                  (str " (" (:wrong-guesses-left info) " left)"))))
+    (condp = (:state info)
+      :won (do
+             (ss/config! game-state-widget :text "You have won!")
+             (ss/config! guess-widget :enabled? false)
+             (.requestFocus (ss/to-widget new-game-widget)))
+      :lost (do
+              (ss/config! game-state-widget :text "You have lost!")
+              (ss/config! guess-widget :enabled? false)
+              (.requestFocus (ss/to-widget new-game-widget)))
+      ;; game is still playing
+      (do
+        (ss/config! game-state-widget :text "Make your guess.")
+        (ss/config! guess-widget :enabled? true)
+        (.requestFocus (ss/to-widget guess-widget))))))
+
+;;;; STEP 2: Define form
+
+;; form defines how the UI will look
+(def form
+  (ss/frame
+   :title "Hangman in Clojure"
+   :on-close :exit
+   :content
+   (ss/grid-panel
+    :border 15 :vgap 10 :columns 1
+    ;; list of widgets
+    :items [;; write current state of game here
+            (ss/label :id :game-state
+                      :text "N/A"
+                      :font "ARIAL-16")
+            ;; word to guess goes here
+            (ss/label :id :word
+                      :text "N/A"
+                      :font "ARIAL-BOLD-26"
+                      :halign :center)
+            ;; list of wrong guesses
+            (ss/label :id :wrong
+                      :text "N/A"
+                      :font "ARIAL-18"
+                      :halign :center)
+            ;; two widgets on one line
+            (ss/horizontal-panel
+             :items [(ss/label :text "Type next guess:"
+                               :font "ARIAL-16")
+                     [:fill-h 20]
+                     ;; guess input widget, to capture key events
+                     (ss/text :id :guess
+                              :listen [:key-released on-next-guess]
+                              :font "ARIAL-BOLD-16"
+                              :size [30 :by 30])])
+            ;; New Game button
+            (ss/button :id :new-game
+                       :text "New Game"
+                       :listen [:action on-new-game]
+                       :font "ARIAL-16")
+            ;; credits
+            (ss/label :text "https://github.com/wagjo/hangman"
+                      :font "ARIAL-16"
+                      :halign :right)])))
+
 ;; main desktop functions
 
 (defn start-game!
@@ -121,4 +139,8 @@
       ss/pack!
       ss/show!))
 
-(start-game!)
+(comment
+
+  (start-game!)
+  
+  )

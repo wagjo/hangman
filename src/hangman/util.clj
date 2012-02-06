@@ -16,6 +16,9 @@
            java.util.zip.ZipInputStream)
   (:require [clojure.java.io :as jio]))
 
+;; This file is not part of tutorial.
+;; Functions here are pretty advanced.
+
 (defn unzip-from-url
   "Loads zip file from an url, unzips first file
   and returns a reader object on it."
