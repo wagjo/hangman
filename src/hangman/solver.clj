@@ -82,10 +82,10 @@
   )
 
 (defn wrong-guesses
-  "Returns seq of wrong guesses for a given word.
+  "Returns set of wrong guesses for a given word.
   Returns empty seq if there are no wrong guesses."
   [word guesses]
-  (remove (set word) guesses))
+  (set (remove (set word) guesses)))
 
 (comment
 

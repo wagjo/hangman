@@ -12,21 +12,9 @@
 
 (ns hangman.main
   "Entry point for Hangman."
-  (:gen-class))
-
-(defn- start-server
-  []
-  (println "Hangman in server mode."))
-
-(defn- start-desktop
-  []
-  (println "Hangman in desktop mode."))
+  (:gen-class)
+  (:require [hangman.desktop :as desktop]))
 
 (defn -main
   [& args]
-  (condp = (first args)
-    "server" (start-server)
-    "desktop" (start-desktop)
-    (println "Welcome to Hangman! Valid arguments are:
-server - start hangman in web server mode.
-desktop - start hangman as a desktop app.")))
+  (desktop/start-game!))
