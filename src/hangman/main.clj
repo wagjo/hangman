@@ -12,9 +12,12 @@
 
 (ns hangman.main
   "Entry point for Hangman."
+  ;; ensure file is compiled so it can be easily called from java.
   (:gen-class)
   (:require [hangman.desktop :as desktop]))
 
+;; this is how you define main function
 (defn -main
+  "Main entry point for Hangman."
   [& args]
   (desktop/start-game!))

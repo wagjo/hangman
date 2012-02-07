@@ -83,7 +83,7 @@
 
 (defn wrong-guesses
   "Returns set of wrong guesses for a given word.
-  Returns empty seq if there are no wrong guesses."
+  Returns empty set if there are no wrong guesses."
   [word guesses]
   (set (remove (set word) guesses)))
 

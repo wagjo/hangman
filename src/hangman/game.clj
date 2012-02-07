@@ -139,5 +139,4 @@
   (get-info {:word "hangman" :guesses
              [\h \a \c \d \e \f \c \m \g \n]})
 
-
   )

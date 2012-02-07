@@ -17,6 +17,8 @@
             [incanter.charts :as charts]
             [clojure.java.io :as jio]))
 
+;; For Hangman, we need a list of words to guess. 
+
 ;;;; STEP 1: Where is the list of words located
 
 ;; URL of a .zip file containing list of words
@@ -59,6 +61,9 @@
   "Returns seq of words."
   [url]
   (line-seq (util/unzip-from-url url)))
+
+;; NOTE: defn- defines private function. Private functions cannot
+;;       be called from other namespaces.
 
 ;;;; STEP 3: select only words of given length
 
@@ -146,6 +151,8 @@
   (rand-nth (get-words words-local))
 
   )
+
+;;;; Public API
 
 (defn get-random-word
   "Returns random word from the list of words located at url
