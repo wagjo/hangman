@@ -1,3 +1,7 @@
+<img
+src="https://github.com/downloads/wagjo/hangman/hangman-gui.png"
+ alt="Hangman GUI" title="Hangman GUI" align="right"/>
+
 # Hangman
 
 Complete beginner's tutorial to Clojure.
@@ -5,10 +9,6 @@ Complete beginner's tutorial to Clojure.
 This tutorial is for complete newbies to Clojure. It guides you
 through the process of creating a playable and production ready
 hangman game.
-
-<img
-src="https://github.com/downloads/wagjo/hangman/hangman-gui.png"
- alt="Hangman GUI" title="Hangman GUI" align="right"/>
 
 ## Prerequisites
 
