@@ -8,17 +8,19 @@ hangman game.
 
 <img
 src="https://github.com/downloads/wagjo/hangman/hangman.png"
- alt="Hangman GUI" title="Hangman GUI" align="left" />
+ alt="Hangman GUI" title="Hangman GUI" align="center" style="clear:none;" />
 
 ## Prerequisites
 
 This tutorial does not cover following topics:
+
 * working with git and github
 * installing clojure
 * working with leiningen
 * anything IDE related
 
 Prerequisites for this tutorial include:
+
 * installed git
 * IDE which supports Clojure REPL and can evaluate selected 
 expressions from source file in REPL
@@ -26,6 +28,7 @@ expressions from source file in REPL
 ### Installing Leiningen
 
 This is how I set up leiningen in Ubuntu:
+
 * `wget https://raw.github.com/technomancy/leiningen/stable/bin/lein`
 * `sudo cp ./lein /bin/lein`
 * `chmod 755 /bin/lein`
@@ -34,6 +37,7 @@ This is how I set up leiningen in Ubuntu:
 ### Preferred IDE
 
 I use Emacs in Ubuntu. This is how I set it up:
+
 * `sudo apt-get install emacs23`
 * `git clone git://github.com/technomancy/emacs-starter-kit.git`
 * `git checkout remotes/origin/master`
@@ -54,6 +58,7 @@ installation
     * save it for future sessions
 
 Developing with emacs:
+
 * in one console, launch project with lein swank
 * in other console, start emacs and connect to swank with
 `slime-connect`
@@ -75,6 +80,7 @@ Developing with emacs:
 ## Lets begin
 
 Study files in following order:
+
 1. Carefully read [this presentation](https://docs.google.com/present/edit?id=0ARVWfleXxysoZGdrMjhtN2ZfNDg2N2pqOWRjNw)
 2. [blob/master/src/tutorial/core.clj](blob/master/src/tutorial/core.clj)
 3. [blob/master/src/hangman/words.clj](blob/master/src/hangman/words.clj)
@@ -92,6 +98,7 @@ Type `lein run` to run the game.
 ### Package game
 
 How to package the game for publishing
+
 * Type `lein uberjar`
 * Run packaged game with `java -jar ./hangman-1.0.0-standalone.jar`
     * or doubleclick on hangman-1.0.0-standalone.jar :)
@@ -100,6 +107,7 @@ How to package the game for publishing
 
 Following challenges require knowledge in clojure beyond what is
 explained in this tutorial
+
 * modify words.clj so it does not read from file every time word is 
 requested
 * modify words.clj so it will never return same word twice, yet it 
