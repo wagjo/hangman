@@ -36,7 +36,7 @@ for some info about leiningen and emacs.
 
 Study introductory clojure tutorials:
 
-1. [Introductory presentation](https://docs.google.com/present/edit?id=0ARVWfleXxysoZGdrMjhtN2ZfNDg2N2pqOWRjNw)
+1. [introductory presentation](https://docs.google.com/present/edit?id=0ARVWfleXxysoZGdrMjhtN2ZfNDg2N2pqOWRjNw)
 2. [src/tutorial/core.clj](https://github.com/wagjo/hangman/blob/master/src/tutorial/core.clj)
 
 Study hangman source files:

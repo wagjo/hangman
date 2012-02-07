@@ -62,7 +62,7 @@
 ;; resulting code won't look very pleasant. Omitting docstring
 ;; is another very common mistake caused by programmer's ignorance
 ;; and very high self-esteem.
-;; Every time you omit a docstring, God kills a kitten.
+;; Every time you omit a docstring, Rich kills a kitten.
 ;; Please, think of the kittens!
 (defn ugly-match [w g] (apply str (map #(if ((set g) %) % \_) w)))
 
