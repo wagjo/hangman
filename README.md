@@ -5,7 +5,7 @@ src="https://github.com/downloads/wagjo/hangman/hangman-gui.png"
 
 Complete beginner's tutorial to Clojure.
 
-This tutorial is for complete newbies to Clojure. It guides you
+This tutorial is for **Clojure newbies**. It guides you
 through the process of creating a playable and production ready
 hangman game.
 
@@ -13,7 +13,7 @@ hangman game.
 
 Prerequisites for this tutorial include:
 
-* installed git
+* Installed git
 * IDE which supports Clojure REPL and can evaluate selected 
 expressions from source file in REPL
 
@@ -29,16 +29,16 @@ for some info about leiningen and emacs.
   given below
 * Study files from top to bottom, line by line
     * evaluate files and expressions in comments
-    * tkink, experiment, read official docs and [ClojureDocs](http://clojuredocs.org)
+    * **think**, experiment, read official docs and [ClojureDocs](http://clojuredocs.org)
 
 ## Lets begin
 
 Study following resources dealing with basic Clojure stuff:
 
-1. Carefully read [this presentation](https://docs.google.com/present/edit?id=0ARVWfleXxysoZGdrMjhtN2ZfNDg2N2pqOWRjNw)
+1. [Introductory presentation](https://docs.google.com/present/edit?id=0ARVWfleXxysoZGdrMjhtN2ZfNDg2N2pqOWRjNw)
 2. [src/tutorial/core.clj](https://github.com/wagjo/hangman/blob/master/src/tutorial/core.clj)
 
-Study following hangman files:
+Study following hangman source files:
 
 1. [src/hangman/words.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/words.clj)
 2. [src/hangman/solver.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/solver.clj)

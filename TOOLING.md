@@ -39,6 +39,6 @@ Developing with emacs:
 * in one console, launch project with `lein swank`
 * in other console, start emacs and connect to swank with
 `slime-connect`
-* compile buffer with *C-c C-k*
-* evaluate expression with *C-x C-e*
-* see doc for a function with *C-d C-d d*
+* compile buffer with **C-c C-k**
+* evaluate expression with **C-x C-e**
+* see doc for a function with **C-d C-d d**
