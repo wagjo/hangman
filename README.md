@@ -7,8 +7,8 @@ through the process of creating a playable and production ready
 hangman game.
 
 <img
-src="https://github.com/downloads/wagjo/hangman/hangman.png"
- alt="Hangman GUI" title="Hangman GUI" align="left" style="clear:none;" />
+src="https://github.com/downloads/wagjo/hangman/hangman-gui.png"
+ alt="Hangman GUI" title="Hangman GUI" align="right"/>
 
 ## Prerequisites
 
@@ -89,7 +89,7 @@ Study files in following order:
 6. [src/hangman/core.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/core.clj)
 7. [src/hangman/desktop.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/desktop.clj)
 8. [src/hangman/main.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/main.clj)
-9. [project.clj](https://github.com/wagjo/hangman/blob/master/README.md)
+9. [project.clj](https://github.com/wagjo/hangman/blob/master/project.clj)
 
 ## How to run the game
 
