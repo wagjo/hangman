@@ -58,10 +58,19 @@
         matched-seq (map replace-fn word)]
     (apply str matched-seq)))
 
+;; Clojure allows you to be very terse, but very often,
+;; resulting code won't look very pleasant. Omitting docstring
+;; is another very common mistake caused by programmer's ignorance
+;; and very high self-esteem.
+;; Every time you omit a docstring, God kills a kitten.
+;; Please, think of the kittens!
+(defn ugly-match [w g] (apply str (map #(if ((set g) %) % \_) w)))
+
 (comment
 
   ;; test match fn
   (match "hangman" [\h \n \c])
+  (ugly-match "hangman" [\h \n \c])
 
   ;; test if no guess characters are given
   (match "hangman" nil)

@@ -6,7 +6,7 @@
   ;; leiningen will find it
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [incanter "1.3.0-SNAPSHOT"]
-                 [seesaw "1.3.1-SNAPSHOT"]]
+                 [seesaw "1.3.0"]]
   :jvm-opts ["-Dswank.encoding=utf-8"]
   ;; name of main class
   :main hangman.main)

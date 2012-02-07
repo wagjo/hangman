@@ -31,7 +31,7 @@ I use Emacs in Ubuntu. This is how I set it up:
 installation
 * `M-x customize-group`, enter `slime-lisp`
     * enter `slime-lisp`
-    * change *Slime Net Coding System* to *utf-8-unix*
+    * change **Slime Net Coding System** to **utf-8-unix**
     * save it for future sessions
 
 Developing with emacs:

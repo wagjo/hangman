@@ -16,15 +16,40 @@
 
 ;;;; STEP 1: game state
 
+;; NOTE: You may be tempted to use (def ) to redefine symbol, in
+;;       order to emulate state change. Do not do this, as def should
+;;       be used only for the "development".
+
+;; Mutating state is handled by refs, vars and atoms.
+;; In this tutorial, we will use atoms.
+
+(comment
+
+  ;; define atom
+  (def foo (atom 3))
+
+  ;; obtain atoms value
+  @foo
+
+  ;; change atoms state
+  (swap! foo inc)
+
+  ;; obtain atoms value again
+  @foo
+
+  )
+
 ;; game state is stored in this var
 (def current-game (atom (game/create-game)))
 
-;;; These are state modifying functions
+;;;; Public API
 
 (defn get-game-info
   "Returns current game info."
   []
   (game/get-info @current-game))
+
+;;; These are state modifying functions
 
 (defn new-game!
   "Starts a new game. Returns info for player"
@@ -42,11 +67,14 @@
   (swap! current-game game/add-next-guess guess)
   (get-game-info))
 
+;; NOTE: Function name should end with bang (!), if it does change
+;;       some state, calls modyfying io or performs side-effects.
+
 ;;; Test the game
 
 (comment
 
-  ;; what is current game info
+  ;; what is the current game info
   (get-game-info)
 
   ;; what is in the current game var?

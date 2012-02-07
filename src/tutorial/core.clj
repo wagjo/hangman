@@ -1,4 +1,4 @@
-;; Welcome to Clojure Hangman tutorial. This line is a comment.
+;; Welcome to introductory Clojure tutorial. This line is a comment.
 
 ;; Comments starts with ; and spans to the end of current line
 
@@ -20,7 +20,7 @@
 
 
 ;; Clojure programs usually consist of several clojure source files.
-;; You are now in file called core.clj, which is placed
+;; You are now in a file called core.clj, which is placed
 ;; in src/tutorial directory.
 
 ;; Each file usually represents one namespace. Namespaces group
@@ -30,13 +30,13 @@
 ;; Clojure file should start with namespace definition. Namespace name
 ;; must reflect file name and its path in the filesystem.
 (ns tutorial.core
-  ;; following form makes available other namespaces, so we can
-  ;; call functions in them.
+  ;; following form makes other namespaces accessible, so we can
+  ;; call functions defined in them.
   (:require [clojure.string :as cstr]
             [clojure.set :as cset]))
 
 ;; NOTE: Always have at least two segments in namespace name. Do not
-;;       create e.g. (ns tutorial) namespace. It will cause
+;;       create e.g. (ns tutorial ) namespace. It will cause
 ;;       problems with AOT compilation.
 
 ;; NOTE: By convention, most important file in current namespace
@@ -63,7 +63,7 @@
 
   ;; test hello function. In emacs, point cursor at the end of
   ;; following line and press C-x C-e. Do not forget to compile
-  ;; file with C-c C-k before evaluating and expression
+  ;; file with C-c C-k before evaluating following expression
   (hello "world")
 
   ;; Note that text inside (comment ) must be a valid clojure code
@@ -106,13 +106,13 @@
   )
 
 (defn hello-evangelists*
-  "Returns greeting to four evangelists."
+  "Returns greetings to four evangelists."
   []
   (hello (cstr/join ", " (map uppercase-first evangelists))))
 
 ;; previous function can be written also as
 (defn hello-evangelists
-  "Returns greeting to four evangelists."
+  "Returns greetings to four evangelists."
   []
   (->> evangelists
        (map uppercase-first)
@@ -125,7 +125,7 @@
 
   )
 
-;; three ways to determine wheter person is evangelists
+;; three ways to determine wheter person is evangelist
 
 (defn evangelist?
   [name]
@@ -136,21 +136,27 @@
   [name]
   (contains? (set evangelists) name))
 
+;; NOTE: use C-c C-d d in emacs to read documentation for selected
+;;       function. Point cursor at the text "contains?" and try it.
+
 (defn evangelist?**
   [name]
   ((set evangelists) name))
 
 (comment
 
-  ;; notice the differences between functions
+  ;; compare return values of following functions
 
-  (evangelist? "paul")
-  (evangelist? "mark")
+  (evangelist? "paul") ; nil
+  (evangelist? "mark") ; true
 
-  (evangelist?* "paul")
-  (evangelist?* "mark")
+  (evangelist?* "paul") ; false
+  (evangelist?* "mark") ; true
 
-  (evangelist?** "paul")
-  (evangelist?** "mark")
+  (evangelist?** "paul") ; nil
+  (evangelist?** "mark") ; "mark"
 
   )
+
+;; NOTE: Limit line length to 70 characters.
+;;       File will be more readable.

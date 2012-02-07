@@ -38,12 +38,12 @@
 
 (comment
 
-  ;; try game creation
+  ;; try game creation function
   (create-game)
 
   )
 
-;;;; STEP 2: Check if game is over
+;;;; STEP 2: Check if a game is over
 
 ;; define maximum number of wrong guesses before the game is over
 (def max-wrong-guesses 5)
@@ -57,8 +57,8 @@
 
 (defn won?
   "Returns true if game is won. Return false otherwise."
-  [game]
-  (solver/won? (:word game) (:guesses game)))
+  [{guesses :guesses word :word}] ; another type of destructuring
+  (solver/won? word guesses))
 
 (defn game-over?
   "Return true if game is over. Returns false otherwise."
@@ -98,6 +98,9 @@
   (let [game {:word "hangman", :guesses [\h \a \c]}]
     (update-in game [:guesses] conj \g))
 
+  ;; NOTE: for more map manipluation functions, see
+  ;;       assoc, assoc-in, dissoc and merge
+
   )
 
 (defn add-next-guess
@@ -110,15 +113,16 @@
 
 ;;;; STEP 4: get information for player
 
+;; User should not see word which he/she is guessing. Type of
+;; information sent to the user is different from game state we keep.
+
 (defn get-info
   "Returns information for player about the game."
-  [game]
-  (let [wrong-guesses (solver/wrong-guesses (:word game)
-                                            (:guesses game))]
-    {:hint (if (lost? game)
-             (:word game)
-             (solver/match (:word game)
-                           (:guesses game)))
+  [{:keys [word guesses] :as game}] ; yet another destructuring
+  (let [wrong-guesses (solver/wrong-guesses word guesses)]
+    {:hint (if (game-over? game)
+             word
+             (solver/match word guesses))
      :wrong-guesses wrong-guesses
      :wrong-guesses-left (max 0
                               (- max-wrong-guesses
@@ -137,6 +141,6 @@
   (get-info {:word "hangman" :guesses [\h \a \c \d \e \f \c]})
   (get-info {:word "hangman" :guesses [\h \a \c \d \e \f \c \d]})
   (get-info {:word "hangman" :guesses
-             [\h \a \c \d \e \f \c \m \g \n]})
+             [\h \a \c \d \e \f \c \m \g \w \t]})
 
   )

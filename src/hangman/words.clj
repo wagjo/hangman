@@ -11,7 +11,7 @@
 ;; You must not remove this notice, or any other, from this software.
 
 (ns hangman.words
-  "Obtaining words for hangman."
+  "Obtaining words for hangman." ; optional docstring for namespace
   (:require [hangman.util :as util]
             [incanter.core :as incanter]
             [incanter.charts :as charts]
@@ -35,7 +35,7 @@
   ;; word list reader
   (util/unzip-from-url words-local)
 
-  ;; whole word list as a single string  
+  ;; whole word list as a single string
   (slurp (util/unzip-from-url words-local))
   
   ;; count number of characters
@@ -84,6 +84,9 @@
     [(apply min lengths)
      (apply max lengths)])
 
+  ;; NOTE: "apply" calls given function and use elements from
+  ;;       supplied collection as a parameters for the function
+
   ;; how are lengths distributed?
   (let [counts (map count (get-words words-local))]
     (incanter/view (charts/histogram counts :nbins 25)))
@@ -104,9 +107,12 @@
   "Returns trimmed seq of words.
   Words are trimmed by length.
   Range is specified as a second parameter."
-  [words [min max]]
+  [words [min max]] ; using destructuting here
   (let [keep? #(<= min (count %) max)]
     (filter keep? words)))
+
+;; NOTE: for more info on destructuring,
+;;       see http://clojure.org/special_forms
 
 (comment
 
@@ -154,6 +160,7 @@
 
 ;;;; Public API
 
+;; Following function supports multiple arities
 (defn get-random-word
   "Returns random word from the list of words located at url
   (defaults to words-local), having length in a range (defaults
