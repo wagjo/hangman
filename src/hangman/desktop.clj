@@ -54,7 +54,8 @@
         info (hangman/get-game-info)]
     ;; print word to guess
     (ss/config! (ss/select form [:#word])
-                :text (cs/upper-case (:hint info)))
+                :text (cs/upper-case (cs/join " "
+                                              (seq (:hint info)))))
     ;; print wrong guesses, in uppercase, sorted
     (ss/value! (ss/select form [:#wrong])
                (str

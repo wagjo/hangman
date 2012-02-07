@@ -8,7 +8,7 @@ hangman game.
 
 <img
 src="https://github.com/downloads/wagjo/hangman/hangman.png"
- alt="Hangman GUI" title="Hangman GUI" align="center" style="clear:none;" />
+ alt="Hangman GUI" title="Hangman GUI" align="left" style="clear:none;" />
 
 ## Prerequisites
 
@@ -82,14 +82,14 @@ Developing with emacs:
 Study files in following order:
 
 1. Carefully read [this presentation](https://docs.google.com/present/edit?id=0ARVWfleXxysoZGdrMjhtN2ZfNDg2N2pqOWRjNw)
-2. [blob/master/src/tutorial/core.clj](blob/master/src/tutorial/core.clj)
-3. [blob/master/src/hangman/words.clj](blob/master/src/hangman/words.clj)
-4. [blob/master/src/hangman/solver.clj](blob/master/src/hangman/solver.clj)
-5. [blob/master/src/hangman/game.clj](blob/master/src/hangman/game.clj)
-6. [blob/master/src/hangman/core.clj](blob/master/src/hangman/core.clj)
-7. [blob/master/src/hangman/desktop.clj](blob/master/src/hangman/desktop.clj)
-8. [blob/master/src/hangman/main.clj](blob/master/src/hangman/main.clj)
-9. [blob/master/README.md](blob/master/README.md)
+2. [src/tutorial/core.clj](https://github.com/wagjo/hangman/blob/master/src/tutorial/core.clj)
+3. [src/hangman/words.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/words.clj)
+4. [src/hangman/solver.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/solver.clj)
+5. [src/hangman/game.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/game.clj)
+6. [src/hangman/core.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/core.clj)
+7. [src/hangman/desktop.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/desktop.clj)
+8. [src/hangman/main.clj](https://github.com/wagjo/hangman/blob/master/src/hangman/main.clj)
+9. [project.clj](https://github.com/wagjo/hangman/blob/master/README.md)
 
 ## How to run the game
 
