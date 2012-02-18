@@ -7,6 +7,7 @@
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [incanter "1.3.0-20120120.004852-2"]
                  [seesaw "1.3.0"]]
+  :checksum-deps false
   :jvm-opts ["-Dswank.encoding=utf-8"]
   ;; name of main class
   :main hangman.main)
